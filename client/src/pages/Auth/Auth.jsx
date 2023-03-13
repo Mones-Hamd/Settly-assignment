@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import Input from '../../components/Input/Input';
 import FIELDS from '../../constant/Fields';
+import useAuth from '../../hooks/useAuth';
+import useFrom from '../../hooks/useForm';
 import './auth.css';
 
 const Auth = () => {
   const [isRegister, setIsRegister] = useState(false);
+  const { formData, handleChange } = useFrom({});
+  const { isLoading, isSuccess, message, perform, error } = useAuth();
   const switchMode = (e) => {
     e.preventDefault();
     setIsRegister((prev) => !prev);
@@ -12,7 +16,15 @@ const Auth = () => {
   const seedInputData = isRegister
     ? FIELDS.REGISTER_FIELDS
     : FIELDS.LOGIN_FIELDS;
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isRegister) {
+      perform('register', formData);
+    } else {
+      perform('login', formData);
+    }
+  };
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="login-form">
@@ -20,7 +32,13 @@ const Auth = () => {
           {isRegister ? 'Create your account' : 'Login'}
         </h1>
         {seedInputData.map(({ name, type, placeholder }) => (
-          <Input name={name} type={type} placeholder={placeholder} />
+          <Input
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            handleChange={handleChange}
+            key={name}
+          />
         ))}
         <button type="submit" className="submit-button">
           {isRegister ? 'CREATE ACCOUNT' : 'LOGIN'}
