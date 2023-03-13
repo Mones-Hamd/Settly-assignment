@@ -6,7 +6,7 @@ const useAuth = () => {
   const [isSuccess, setIsSuccess] = useState(null);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
-  const { profile, setProfile } = useContext(UserContext);
+  const { setProfile } = useContext(UserContext);
 
   const fetchData = async (route, data) => {
     const baseOptions = {
@@ -26,6 +26,7 @@ const useAuth = () => {
             result.status
           }). Received: ${JSON.stringify(result)}`,
         );
+        setIsLoading(null);
       }
       const jsonResault = await result.json();
       if (jsonResault.success) {
@@ -33,6 +34,7 @@ const useAuth = () => {
         setIsLoading(false);
         setProfile(jsonResault.profile);
         localStorage.setItem('profile', JSON.stringify(jsonResault.profile));
+        setMessage(null);
       }
       if (jsonResault.message) {
         setMessage(jsonResault.message);
@@ -44,6 +46,13 @@ const useAuth = () => {
       setMessage(err.message);
     }
   };
-  return { isLoading, isSuccess, message, perform: fetchData, error };
+  return {
+    isLoading,
+    isSuccess,
+    message,
+    perform: fetchData,
+    error,
+    setMessage,
+  };
 };
 export default useAuth;

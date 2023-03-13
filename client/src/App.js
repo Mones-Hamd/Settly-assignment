@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import Auth from './pages/Auth/Auth';
 import { UserProvider } from './contexts/UserContext';
+
+import Home from './pages/Home/Home';
 function App() {
   return (
     <div className="App">
@@ -17,6 +19,7 @@ function App() {
             <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<Auth />} />
             <Route path="/register" element={<Auth />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
         </UserProvider>
       </Router>

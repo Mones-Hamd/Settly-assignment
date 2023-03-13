@@ -17,7 +17,7 @@ const REGISTER_FIELDS = [
     placeholder: 'First Name',
   },
   {
-    name: 'surname',
+    name: 'surName',
     type: 'text',
     placeholder: 'Surname',
   },
