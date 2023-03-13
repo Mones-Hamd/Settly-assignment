@@ -1,0 +1,10 @@
+.input {
+  width: 80%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: none;
+  font-size: larger;
+  border-bottom: 1px solid gray;
+  background-color: rgba(233, 230, 230, 0.162);
+  color: black;
+}
