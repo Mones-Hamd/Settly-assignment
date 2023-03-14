@@ -17,7 +17,7 @@ const Auth = () => {
   const switchMode = (e) => {
     e.preventDefault();
     setIsRegister((prev) => !prev);
-    setMessage('');
+    setMessage(null);
   };
   const seedInputData = isRegister
     ? FIELDS.REGISTER_FIELDS
@@ -36,7 +36,7 @@ const Auth = () => {
   console.log(message);
   return (
     <div className="container">
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleSubmit} className="form-app">
         <h1 className="text-header">
           {isLoading && <Loading />}
           {isRegister ? 'Create your account' : 'Login'}
@@ -50,16 +50,16 @@ const Auth = () => {
             key={name}
           />
         ))}
-        <button type="submit" className="submit-button">
+        <button type="submit" className="btn-app">
           {isRegister ? 'CREATE ACCOUNT' : 'LOGIN'}
         </button>
-        <p>
+        <p className="text-app">
           {isRegister ? 'Already ' : 'No account yet? '}
-          <a href="/register" onClick={(e) => switchMode(e)}>
+          <a href="auth" onClick={(e) => switchMode(e)}>
             {isRegister ? 'have an account ' : 'Create one here.'}
           </a>
 
-          {error && <Error message={message} />}
+          {error && message && <Error message={message} />}
         </p>
       </form>
     </div>

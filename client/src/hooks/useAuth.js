@@ -5,7 +5,7 @@ const useAuth = () => {
   const [isLoading, setIsLoading] = useState(null);
   const [isSuccess, setIsSuccess] = useState(null);
   const [error, setError] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState(null);
   const { setProfile } = useContext(UserContext);
 
   const fetchData = async (route, data) => {
