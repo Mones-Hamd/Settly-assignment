@@ -1,0 +1,52 @@
+:root {
+  --primary-color: #2078e2;
+  --secondary-color: #ff00ff;
+  --primary-dark-color: #1f2232;
+  --primary-light-color: #f5f3f4;
+  --primary-gray-color: #626060;
+  --accent-color: #4161e1;
+  --error-color: #dc281e;
+  --white-color: #ffffff;
+  --bg-color: #08b5f4;
+  --font-size-input: 1.1rem;
+  --font-size-input-label: 0.8rem;
+  --font-size-paragraph: 1.2rem;
+  --font-size-title: 1.7rem;
+  --font-size-btn: 1.3rem;
+  --border-radius-btn-input: 5px;
+  --border-radius-form: 15px;
+  --title-font-family-title: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+}
+* {
+  text-decoration: none;
+  list-style: none;
+}
+body {
+  background-color: var(--bg-color);
+}
+h1 {
+  color: var(--primary-dark-color);
+  font-family: var(--title-font-family-title);
+  font-weight: 200;
+}
+
+.btn-app {
+  background-color: var(--accent-color);
+  color: var(--primary-light-color);
+  font-family: var(--title-font-family-title);
+  border-radius: var(--border-radius-btn-input);
+  font-size: var(--font-size-btn);
+  border: solid 1px;
+  width: 70%;
+  padding: 1rem;
+  margin: 2rem auto;
+}
+
+.btn-app:hover {
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius-btn-input);
+  border: solid 1px var(--accent-color);
+}

@@ -1,0 +1,25 @@
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: var(--white-color);
+  font-size: 30px;
+  text-align: center;
+  font-family: var(--title-font-family-title);
+}
+
+.name {
+  font-size: 50px;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .welcome-message {
+    font-size: 20px;
+  }
+
+  .name {
+    font-size: 30px;
+  }
+}

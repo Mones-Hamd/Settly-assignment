@@ -1,0 +1,9 @@
+.input-app {
+  width: 70%;
+  margin: 1rem;
+  padding: 0.7rem;
+  border: none;
+  font-size: var(--font-size-input);
+  border-bottom: 1px solid var(--primary-gray-color);
+  color: black;
+}

@@ -1,0 +1,24 @@
+.text-app {
+  font-size: var(--font-size-paragraph);
+  color: var(--primary-dark-color);
+  font-family: var(--title-font-family-title);
+}
+
+.form-app {
+  max-width: 90%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border-radius: var(--border-radius-form);
+  box-shadow: 0px 3px 6px var(--primary-gray-color);
+}
+
+@media only screen and (min-width: 768px) {
+  .form-app {
+    max-width: 40%;
+  }
+}
