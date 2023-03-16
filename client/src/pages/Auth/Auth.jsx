@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Capatcha from '../../components/Capatcha';
 import Error from '../../components/Error/Error';
 import Input from '../../components/Input/Input';
 import Loading from '../../components/Loading/Loading';
 import FIELDS from '../../constant/Fields';
+import { CapatchaContext } from '../../contexts/CapatchaContext';
 import useAuth from '../../hooks/useAuth';
 import useFrom from '../../hooks/useForm';
 import './auth.css';
@@ -14,18 +16,23 @@ const Auth = () => {
   const { isLoading, isSuccess, message, perform, error, setMessage } =
     useAuth();
   const navigate = useNavigate();
+  const { capatchaValue, capatchaRef } = useContext(CapatchaContext);
   const switchMode = (e) => {
     e.preventDefault();
     setIsRegister((prev) => !prev);
     setMessage(null);
   };
+
   const seedInputData = isRegister
     ? FIELDS.REGISTER_FIELDS
     : FIELDS.LOGIN_FIELDS;
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (isRegister) {
-      perform('register', formData);
+      capatchaRef.current.reset();
+      perform('register', { ...formData, capatchaValue });
     } else {
       perform('login', formData);
     }
@@ -33,7 +40,6 @@ const Auth = () => {
   useEffect(() => {
     if (isSuccess) navigate('/home');
   });
-  console.log(message);
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="form-app">
@@ -50,6 +56,7 @@ const Auth = () => {
             key={name}
           />
         ))}
+        {isRegister && <Capatcha />}
         <button type="submit" className="btn-app">
           {isRegister ? 'CREATE ACCOUNT' : 'LOGIN'}
         </button>
