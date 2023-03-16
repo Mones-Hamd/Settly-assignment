@@ -25,18 +25,16 @@ export const register = async (req, res) => {
 
     const hashedPassword = await bcryptjs.hash(password, 10);
 
-    const result = await User.create({
+    const newUser = await User.create({
       email,
       password: hashedPassword,
       name: `${firstName} ${surName}`,
     });
-    const token = generateToken(result.email, result._id);
-    res
-      .status(200)
-      .json({
-        success: true,
-        profile: { email: result.email, name: result.name, token },
-      });
+    const token = generateToken(newUser.email, newUser._id);
+    res.status(200).json({
+      success: true,
+      profile: { email: newUser.email, name: newUser.name, token },
+    });
   } catch (err) {
     res.status(500).json({ message: 'Internal Error.' });
   }
@@ -54,12 +52,10 @@ export const login = async (req, res) => {
     if (!isPasswordCorrect)
       return res.status(400).json({ message: 'Invaild Password' });
     const token = generateToken(email, existingUser._id);
-    res
-      .status(200)
-      .json({
-        success: true,
-        profile: { email: existingUser.email, name: existingUser.name, token },
-      });
+    res.status(200).json({
+      success: true,
+      profile: { email: existingUser.email, name: existingUser.name, token },
+    });
   } catch (err) {
     res.status(500).json({ message: 'Internal Error' });
   }
