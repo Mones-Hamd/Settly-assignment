@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { UserContext } from '../../contexts/UserContext';
 import './home.css';
 
 const Home = () => {
-  const { profile } = useContext(UserContext);
+  const profile = JSON.parse(localStorage.getItem('profile'));
 
   return profile ? (
     <div className="welcome-message">
