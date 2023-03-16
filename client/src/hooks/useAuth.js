@@ -16,7 +16,7 @@ const useAuth = () => {
       },
       body: JSON.stringify(data),
     };
-    const URL = `http://localhost:5000/api/user/${route}`;
+    const URL = `https://settly-api.onrender.com/api/user/${route}`;
     setIsLoading(true);
     try {
       const result = await fetch(URL, baseOptions);
