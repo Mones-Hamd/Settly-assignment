@@ -11,7 +11,7 @@ const Capatcha = () => {
   return (
     <div>
       <ReCAPTCHA
-        sitekey={process.env.REACT_APP_SITE_KEY}
+        sitekey="6LcbWAIlAAAAAK6Y8NOiAdK0gkLFRs1IN-IJDe3j"
         onChange={onChange}
         ref={capatchaRef}
       />
