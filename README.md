@@ -5,7 +5,7 @@ Technical assignment to apply for internship in <a href="https://getsettly.com/"
 
 ## Demo
 
- you can try   <a href="https://sittly-assignment.netlify.app/auth"> here .</a>
+ you can try   <a href="https://mones-assignment.onrender.com"> here .</a>
 
 Or you can get started by simply clone the repo and install the dependencies in the root folder
 
