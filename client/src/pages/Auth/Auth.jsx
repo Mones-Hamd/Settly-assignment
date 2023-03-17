@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Capatcha from '../../components/Capatcha';
+import Captcha from '../../components/Captcha';
 import Error from '../../components/Error/Error';
 import Input from '../../components/Input/Input';
 import Loading from '../../components/Loading/Loading';
 import FIELDS from '../../constant/Fields';
-import { CapatchaContext } from '../../contexts/CapatchaContext';
+import { CaptchaContext } from '../../contexts/CaptchaContext';
 import useAuth from '../../hooks/useAuth';
 import useFrom from '../../hooks/useForm';
 import './auth.css';
@@ -13,10 +13,9 @@ import './auth.css';
 const Auth = () => {
   const [isRegister, setIsRegister] = useState(false);
   const { formData, handleChange } = useFrom({});
-  const { isLoading, isSuccess, message, perform, error, setMessage } =
-    useAuth();
+  const { isLoading, isSuccess, message, perform, setMessage } = useAuth();
   const navigate = useNavigate();
-  const { capatchaValue, capatchaRef } = useContext(CapatchaContext);
+  const { captchaValue, captchaRef } = useContext(CaptchaContext);
   const switchMode = (e) => {
     e.preventDefault();
     setIsRegister((prev) => !prev);
@@ -26,13 +25,12 @@ const Auth = () => {
   const seedInputData = isRegister
     ? FIELDS.REGISTER_FIELDS
     : FIELDS.LOGIN_FIELDS;
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (isRegister) {
-      capatchaRef.current.reset();
-      perform('register', { ...formData, capatchaValue });
+      captchaRef.current.reset();
+      perform('register', { ...formData, captchaValue });
     } else {
       perform('login', formData);
     }
@@ -56,7 +54,7 @@ const Auth = () => {
             key={name}
           />
         ))}
-        {isRegister && <Capatcha />}
+        {isRegister && <Captcha />}
         <button type="submit" className="btn-app">
           {isRegister ? 'CREATE ACCOUNT' : 'LOGIN'}
         </button>
@@ -66,7 +64,7 @@ const Auth = () => {
             {isRegister ? 'have an account ' : 'Create one here.'}
           </a>
 
-          {error && message && <Error message={message} />}
+          {!isSuccess && message && <Error message={message} />}
         </p>
       </form>
     </div>

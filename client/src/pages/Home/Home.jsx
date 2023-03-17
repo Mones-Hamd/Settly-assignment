@@ -9,7 +9,7 @@ const Home = () => {
   return profile ? (
     <div className="welcome-message">
       <h1>
-        Hi <span className="name">{profile.name}</span>,
+        Hi <span className="name">{profile.firstName}</span>,
       </h1>
       <p>Welcome to your admin account.</p>
     </div>

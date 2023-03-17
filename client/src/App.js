@@ -10,19 +10,19 @@ import Auth from './pages/Auth/Auth';
 import { UserProvider } from './contexts/UserContext';
 
 import Home from './pages/Home/Home';
-import { CapatchaProvider } from './contexts/CapatchaContext';
+import { CaptchaProvider } from './contexts/CaptchaContext';
 function App() {
   return (
     <div className="App">
       <Router>
         <UserProvider>
-          <CapatchaProvider>
+          <CaptchaProvider>
             <Routes>
               <Route path="/" element={<Navigate to="/auth" />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/home" element={<Home />} />
             </Routes>
-          </CapatchaProvider>
+          </CaptchaProvider>
         </UserProvider>
       </Router>
     </div>
