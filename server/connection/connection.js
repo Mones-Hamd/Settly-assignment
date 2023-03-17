@@ -7,7 +7,7 @@ export const connectDb = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log(`mongoose is connect: ${connect.connection.host}`);
+    console.log(`Mongoose is connected: ${connect.connection.host}`);
   } catch (err) {
     console.log(err);
     process.exit(1);

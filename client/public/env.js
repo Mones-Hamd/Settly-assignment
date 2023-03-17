@@ -47,7 +47,7 @@ window.env = {
   "LESS": "-R",
   "LOGNAME": "test",
   "npm_lifecycle_script": "react-dotenv && react-scripts start",
-  "VSCODE_GIT_IPC_HANDLE": "/var/folders/vl/4bppzg_939zbjh7p28bc5t980000gn/T/vscode-git-5aa76472dc.sock",
+  "VSCODE_GIT_IPC_HANDLE": "/var/folders/vl/4bppzg_939zbjh7p28bc5t980000gn/T/vscode-git-7d7174363f.sock",
   "npm_config_user_agent": "npm/8.11.0 node/v16.16.0 darwin x64 workspaces/false",
   "INFOPATH": "/usr/local/share/info:",
   "HOMEBREW_CELLAR": "/usr/local/Cellar",

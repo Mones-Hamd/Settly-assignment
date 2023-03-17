@@ -10,20 +10,20 @@ dotenv.config();
 export const register = async (req, res) => {
   const {
     firstName,
-    surName,
+    surname,
     email,
     confirmedEmail,
     password,
     confirmedPassword,
-    capatchaValue,
+    captchaValue,
   } = req.body;
 
   try {
-    const isHuman = await isCapatchaVaild(capatchaValue);
+    const isHuman = await isCapatchaVaild(captchaValue);
     if (isHuman) {
       const existingUser = await User.findOne({ email });
       if (existingUser)
-        return res.status(400).json({ message: 'This user is already exist' });
+        return res.status(409).json({ message: 'This user already exists' });
       if (password !== confirmedPassword)
         return res.status(400).json({ message: "Password don't match." });
       if (email !== confirmedEmail)
@@ -32,17 +32,23 @@ export const register = async (req, res) => {
       const hashedPassword = await bcryptjs.hash(password, 10);
 
       const newUser = await User.create({
+        firstName,
+        surname,
         email,
         password: hashedPassword,
-        name: `${firstName} ${surName}`,
       });
       const token = generateToken(newUser.email, newUser._id);
       res.status(200).json({
         success: true,
-        profile: { email: newUser.email, name: newUser.name, token },
+        profile: {
+          email: newUser.email,
+          firstName: newUser.firstName,
+          surname: newUser.surname,
+          token,
+        },
       });
     } else {
-      res.status(400).json({ message: 'Invalid Capatcha' });
+      res.status(400).json({ message: 'Invalid Captcha' });
     }
   } catch (err) {
     res.status(500).json({ message: 'Internal Error.' });
@@ -63,7 +69,12 @@ export const login = async (req, res) => {
     const token = generateToken(email, existingUser._id);
     res.status(200).json({
       success: true,
-      profile: { email: existingUser.email, name: existingUser.name, token },
+      profile: {
+        email: existingUser.email,
+        firstName: existingUser.firstName,
+        surname: existingUser.surname,
+        token,
+      },
     });
   } catch (err) {
     res.status(500).json({ message: 'Internal Error' });

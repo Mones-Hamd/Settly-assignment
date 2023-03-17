@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { CapatchaContext } from '../contexts/CapatchaContext';
+import { CaptchaContext } from '../contexts/CaptchaContext';
 
-const Capatcha = () => {
-  const { setCapatchaValue, capatchaRef } = useContext(CapatchaContext);
+const Captcha = () => {
+  const { setCaptchaValue, captchaRef } = useContext(CaptchaContext);
   const onChange = async (value) => {
-    await setCapatchaValue(value);
+    await setCaptchaValue(value);
   };
 
   return (
@@ -13,11 +13,11 @@ const Capatcha = () => {
       <ReCAPTCHA
         sitekey="6LcbWAIlAAAAAK6Y8NOiAdK0gkLFRs1IN-IJDe3j"
         onChange={onChange}
-        ref={capatchaRef}
+        ref={captchaRef}
       />
       ,
     </div>
   );
 };
 
-export default Capatcha;
+export default Captcha;
